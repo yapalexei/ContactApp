@@ -13,7 +13,8 @@ Some Basic Features:<br />
 ---photo loads in second view (once a contact is clicked on list)<br />
 --implimented a 3D listview<br />
 
-
+<img src="/view2.png" />
+<img src="/view1.png" /><br />
 Over time, as it allows, I plan to add new features to this.
 
 such as:<br />
