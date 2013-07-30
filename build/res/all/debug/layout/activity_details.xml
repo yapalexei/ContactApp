@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".DetailActivity"
+    android:background="@drawable/paper_backg">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world"
+        android:id="@+id/detailText"
+        android:textSize="30sp"
+        android:background="@drawable/tape3"
+        android:paddingLeft="14sp"
+        android:paddingRight="14sp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/pnumber"
+            android:layout_below="@+id/detailText"
+            android:textSize="20sp"
+            android:background="@drawable/tape1"
+            android:layout_marginTop="3dp"
+            android:paddingLeft="7sp"
+            />
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:src="@drawable/personicon"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false"
+            android:adjustViewBounds="false"
+            android:layout_below="@+id/pnumber"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/detailText"
+            android:layout_alignRight="@+id/errorTextView"
+            android:cropToPadding="false"
+            android:minHeight="@android:dimen/thumbnail_height"
+            android:minWidth="@android:dimen/thumbnail_width"/>
+
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/errorTextView"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/detailText"
+            android:layout_below="@+id/imageView"
+            android:layout_marginTop="10dp"
+            android:background="#000000"
+            android:padding="5sp"
+            android:textColor="#ffffff"
+            />
+
+
+</RelativeLayout>
+<!-- From: file:/Users/alexeiyagolnikov/AndroidStudioProjects/ContactAppProject/ContactApp/src/main/res/layout/activity_details.xml -->

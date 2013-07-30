@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger>
+
+    <dataSet config="main" >
+        <source path="/Users/alexeiyagolnikov/AndroidStudioProjects/ContactAppProject/ContactApp/src/main/assets" >
+            <file
+                name="fonts/ayuma2yk.ttf"
+                path="/Users/alexeiyagolnikov/AndroidStudioProjects/ContactAppProject/ContactApp/src/main/assets/fonts/ayuma2yk.ttf" />
+        </source>
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="/Users/alexeiyagolnikov/AndroidStudioProjects/ContactAppProject/ContactApp/src/debug/assets" />
+    </dataSet>
+
+</merger>
