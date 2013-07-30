@@ -12,6 +12,7 @@ Some Basic Features:<br />
 ---contact name, phone number<br />
 ---photo loads in second view (once a contact is clicked on list)<br />
 --implimented a 3D listview<br />
+--List filter
 
 <img src="/view2.png" />
 <img src="/view1.png" /><br />
@@ -23,3 +24,4 @@ such as:<br />
 --email link (if available)<br />
 --google+ link (if available)<br />
 --UI redesign (for better flow of information)
+--Editing contacts
