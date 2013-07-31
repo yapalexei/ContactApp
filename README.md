@@ -23,5 +23,5 @@ such as:<br />
 --Text button to text the contact<br />
 --email link (if available)<br />
 --google+ link (if available)<br />
---UI redesign (for better flow of information)
+--UI redesign (for better flow of information)<br />
 --Editing contacts
