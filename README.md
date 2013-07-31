@@ -14,8 +14,8 @@ some basic features I was able to make work.
 <li>List filter</li>
 </ul>
 
-<img src="/view2.png" width="425" />
-<img src="/view1.png" width="425" /><br />
+<img src="/view2.png" width="50%" />
+<img src="/view1.png" width="50%" /><br />
 Over time, as it allows, I plan to add new features to this.
 
 <h2>Future Features:</h2>
