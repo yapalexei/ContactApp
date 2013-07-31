@@ -19,6 +19,7 @@ Some Basic Features:<br />
 Over time, as it allows, I plan to add new features to this.
 
 such as:<br />
+--Create a custom ArrayAdapter<br />
 --Dial button to call the contact<br />
 --Text button to text the contact<br />
 --Email link (if available)<br />
