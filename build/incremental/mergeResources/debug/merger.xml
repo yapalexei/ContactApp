@@ -24,6 +24,11 @@
                 qualifiers="hdpi"
                 type="drawable" />
             <file
+                name="polaroid_frame"
+                path="/Users/alexeiyagolnikov/AndroidStudioProjects/ContactAppProject/ContactApp/src/main/res/drawable-hdpi/polaroid_frame.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
                 name="tape1"
                 path="/Users/alexeiyagolnikov/AndroidStudioProjects/ContactAppProject/ContactApp/src/main/res/drawable-hdpi/tape1.png"
                 qualifiers="hdpi"

@@ -8,6 +8,7 @@ import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,10 +27,11 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class DetailActivity extends Activity {
 
-    TextView textView, pNumber, errorTextView;
+    TextView textView, pNumber;
     ImageView photoContainer;
     Cursor cur;
     ContentResolver cr;
@@ -58,7 +60,6 @@ public class DetailActivity extends Activity {
         // Create the text, number and image view
         textView = (TextView) findViewById(R.id.detailText);
         pNumber = (TextView) findViewById(R.id.pnumber);
-        errorTextView = (TextView) findViewById(R.id.errorTextView);
         photoContainer = (ImageView) findViewById(R.id.imageView);
 
         // position them out of view
@@ -66,8 +67,6 @@ public class DetailActivity extends Activity {
         textView.setText(extra.get(0).toString());
         pNumber.setTranslationX(-200);
         pNumber.setText(extra.get(1).toString());
-        photoContainer.setAlpha(0f);
-        errorTextView.setText("");
 
         // initialize the contact table, check it and load image
         try{
@@ -75,32 +74,28 @@ public class DetailActivity extends Activity {
                 if(extra.get(2) != null)
                     readContact(Long.valueOf(extra.get(2)));
                 Log.e("IMAGE", "ID -- " + String.valueOf(extra.get(2)));
-                errorTextView.append("IMAGE ID -- " + String.valueOf(extra.get(2)));
                 if(extra.get(2) != null)
                     image = openDisplayPhoto(Long.valueOf(extra.get(2)));
                 if(image == null)
                     image = openPhotoByID(Long.valueOf(extra.get(2)));
 
+                //photoContainer.setRotation(10);
                 if(image != null){
                     Log.e("IMAGE SIZE", String.valueOf(image.getByteCount()));
-                    errorTextView.append("\nIMAGE SIZE: " + String.valueOf(image.getByteCount()));
                     try{
-                        photoContainer.setImageBitmap(image);
-                        Log.e("IMAGE:","Image should be loaded!");
-                        errorTextView.setVisibility(100);
+                        photoContainer.setImageBitmap(getResizedBitmap(image,300,300));
+//                        photoContainer.setImageBitmap(Bitmap.createScaledBitmap(image,width,width,false));
+                        Log.e("IMAGE:", "Image should be loaded!");
                     }catch (NullPointerException e){
                         Log.e("photoContainer", "Can't assign image to photoContainer!! -- " + e.toString());
-                        errorTextView.append("\nphotoContainer - Can't assign image to photoContainer!! -- " + e.toString());
                     }
                 }else{
                     Log.e("IMAGE", " -- image is NULL!!!!");
-                    errorTextView.append("\nIMAGE -- image is NULL!!!!");
                 }
             }
 
         }catch (NullPointerException e){
             Log.e("image problem:", "couldn't create image for some reason -- " + e.toString());
-            errorTextView.append("\nimage problem: couldn't create image for some reason -- " + e.toString());
         }
 
         // move into view
@@ -181,5 +176,22 @@ public class DetailActivity extends Activity {
                 null,
                 null);
     }
+
+    public Bitmap getResizedBitmap(Bitmap bm, int newHeight, int newWidth) {
+        int width = bm.getWidth();
+        int height = bm.getHeight();
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+        // CREATE A MATRIX FOR THE MANIPULATION
+        Matrix matrix = new Matrix();
+        // RESIZE THE BIT MAP
+        matrix.postScale(scaleWidth, scaleHeight);
+
+        // "RECREATE" THE NEW BITMAP
+        Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
+        return resizedBitmap;
+    }
+
+
 
 }
