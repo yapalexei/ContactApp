@@ -2,8 +2,10 @@ package com.yapalexei.contactapp;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.ContentUris;
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -19,6 +21,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,8 +34,9 @@ import java.util.Random;
 
 public class DetailActivity extends Activity {
 
-    TextView textView, pNumber;
+    TextView cNameView, pNumberView;
     ImageView photoContainer;
+    String phoneNumber, contactName;
     Cursor cur;
     ContentResolver cr;
 
@@ -46,7 +50,9 @@ public class DetailActivity extends Activity {
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
         int width = displayMetrics.widthPixels;
-
+        ArrayList<String> extra = getIntent().getStringArrayListExtra(MainActivity.EXTRA_MESSAGE);
+        contactName = extra.get(0).toString();
+        phoneNumber = extra.get(1).toString();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             // For the main activity, make sure the app icon in the action bar
@@ -55,18 +61,17 @@ public class DetailActivity extends Activity {
             actionBar.setHomeButtonEnabled(true);
         }
 
-        ArrayList<String> extra = getIntent().getStringArrayListExtra(MainActivity.EXTRA_MESSAGE);
 
         // Create the text, number and image view
-        textView = (TextView) findViewById(R.id.detailText);
-        pNumber = (TextView) findViewById(R.id.pnumber);
+        cNameView = (TextView) findViewById(R.id.detailText);
+        pNumberView = (TextView) findViewById(R.id.pnumber);
         photoContainer = (ImageView) findViewById(R.id.imageView);
 
         // position them out of view
-        textView.setTranslationY(-100);
-        textView.setText(extra.get(0).toString());
-        pNumber.setTranslationX(-200);
-        pNumber.setText(extra.get(1).toString());
+        cNameView.setTranslationY(-200);
+        cNameView.setText(contactName);
+        pNumberView.setTranslationX(-300);
+        pNumberView.setText(phoneNumber);
 
         // initialize the contact table, check it and load image
         try{
@@ -99,11 +104,34 @@ public class DetailActivity extends Activity {
         }
 
         // move into view
-        textView.animate().setDuration(750).translationY(0);
-        pNumber.animate().setDuration(750).translationX(0);
+        cNameView.animate().setDuration(750).translationY(0);
+        pNumberView.animate().setDuration(750).translationX(0);
         photoContainer.animate().setDuration(1100).alpha(1);
+
+
     }
 
+    public void onCallClick(View v) {
+        try {
+            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+            callIntent.setData(Uri.parse("tel:"+phoneNumber));
+            startActivity(callIntent);
+        } catch (ActivityNotFoundException activityException) {
+            Log.e("Calling a Phone Number", "Call failed", activityException);
+        }
+    }
+
+    public void onTxtClick(View v) {
+        try {
+            Intent smsIntent = new Intent(Intent.ACTION_VIEW);
+            smsIntent.setType("vnd.android-dir/mms-sms");
+            smsIntent.setData(Uri.parse("sms:" + phoneNumber));
+            //smsIntent.putExtra("sms_body","Body of Message");
+            startActivity(smsIntent);
+        } catch (ActivityNotFoundException activityException) {
+            Log.e("Texting a Phone Number", "Text failed", activityException);
+        }
+    }
     
     private Bitmap openPhotoByID(Long contactId){
 

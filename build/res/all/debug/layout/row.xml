@@ -37,12 +37,12 @@
             android:paddingRight="10sp"
             android:singleLine="true"
             android:layout_marginBottom="8dp"/>
-    <TextView
+    <com.yapalexei.contactapp.MyTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/label"
             android:hint="List Item"
-            android:textSize="23sp"
+            android:textSize="28sp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="false"
             android:background="@drawable/tape_center_short"

@@ -79,12 +79,12 @@ public class ListView3d extends ListView {
         double degree = 90 - (180 / Math.PI) * radians;
 
         mCamera.save();
-        mCamera.translate(0, 0, r-translateZ);
+        mCamera.translate( r-translateZ, 0, 0);
         mCamera.rotateX((float) degree);
         if (distanceY < 0) {
             degree = 360 - degree;
         }
-        mCamera.rotateY((float) degree);
+        //mCamera.rotateY((float) degree);
         mCamera.getMatrix(outMatrix);
         mCamera.restore();
 

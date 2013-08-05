@@ -52,10 +52,10 @@
 
     </FrameLayout>
 
-    <TextView
+    <com.yapalexei.contactapp.MyTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world"
+        android:text="Contact Name"
         android:id="@+id/detailText"
         android:textSize="30sp"
         android:background="@drawable/tape3"
@@ -63,37 +63,63 @@
         android:paddingRight="14sp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
-        android:rotation="2"/>
-    <TextView
+        android:rotation="2"
+        android:paddingTop="5sp"/>
+    <com.yapalexei.contactapp.MyTextView
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="35dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Small Text"
+            android:text="Phone Number"
             android:id="@+id/pnumber"
             android:layout_below="@+id/detailText"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:background="@drawable/tape1"
             android:layout_marginTop="3dp"
             android:paddingLeft="10sp"
             android:paddingRight="10sp"
-            android:rotation="-2"/>
+            android:rotation="-2"
+            />
 
     <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imageButton"
-            android:background="@android:color/background_light"
             android:layout_alignParentLeft="false"
             android:baselineAlignBottom="false"
             android:layout_gravity="center"
-            android:layout_below="@+id/pnumber"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="35dp"
             android:src="@android:drawable/sym_action_call"
             android:scaleX="2"
             android:scaleY="2"
             android:hapticFeedbackEnabled="true"
-            android:rotation="5"/>
+            android:rotation="5"
+            android:onClick="onCallClick"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false"
+            android:layout_below="@+id/pnumber"
+            android:adjustViewBounds="false"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/white_rounded_button"/>
+
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton2"
+            android:layout_alignParentLeft="false"
+            android:baselineAlignBottom="false"
+            android:src="@drawable/perm_group_messages"
+            android:scaleX="2"
+            android:scaleY="2"
+            android:hapticFeedbackEnabled="true"
+            android:onClick="onTxtClick"
+            android:layout_gravity="right|center_vertical"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false"
+            android:rotation="-10"
+            android:background="@android:color/transparent"
+            android:layout_marginTop="40dp"
+            android:layout_below="@+id/imageButton"
+            android:layout_alignLeft="@+id/imageButton"/>
 
 </RelativeLayout>
 <!-- From: file:/Users/alexeiyagolnikov/AndroidStudioProjects/ContactAppProject/ContactApp/src/main/res/layout/activity_details.xml -->

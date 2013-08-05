@@ -60,11 +60,13 @@ public class MainActivity extends Activity {
 
         // Setting your own typeface - still doesn't work.
         Typeface type = Typefaces.get(this, "ayuma2yk");
+        Typeface tf = Typeface.createFromAsset(getAssets(),
+                "fonts/ayuma2yk.ttf");
         try{
-            mFilterTextView.setTypeface(type);
+            mFilterTextView.setTypeface(tf);
         }catch (NullPointerException e){
             Log.e("loadingFont: ", "The font seems to be null or something, " +
-                    "maybe it didn't like the file: ");
+                    "maybe it didn't like the file: " + e.toString());
         }
 
         // Get all of my contacts into the contactTable by way of the queryPhonesTable() method below.

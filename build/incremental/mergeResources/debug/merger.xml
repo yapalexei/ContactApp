@@ -19,6 +19,11 @@
                 qualifiers="hdpi"
                 type="drawable" />
             <file
+                name="perm_group_messages"
+                path="/Users/alexeiyagolnikov/AndroidStudioProjects/ContactAppProject/ContactApp/src/main/res/drawable-hdpi/perm_group_messages.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
                 name="personicon"
                 path="/Users/alexeiyagolnikov/AndroidStudioProjects/ContactAppProject/ContactApp/src/main/res/drawable-hdpi/personicon.png"
                 qualifiers="hdpi"
@@ -61,6 +66,11 @@
             <file
                 name="tape_right"
                 path="/Users/alexeiyagolnikov/AndroidStudioProjects/ContactAppProject/ContactApp/src/main/res/drawable-hdpi/tape_right.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="white_rounded_button"
+                path="/Users/alexeiyagolnikov/AndroidStudioProjects/ContactAppProject/ContactApp/src/main/res/drawable-hdpi/white_rounded_button.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
@@ -173,9 +183,6 @@
                     <!-- All customizations that are NOT specific to a particular API-level can go here. -->
                 </style>
             </file>
-            <file
-                path="/Users/alexeiyagolnikov/AndroidStudioProjects/ContactAppProject/ContactApp/src/main/res/values-sw600dp/dimens.xml"
-                qualifiers="sw600dp" />
             <file
                 path="/Users/alexeiyagolnikov/AndroidStudioProjects/ContactAppProject/ContactApp/src/main/res/values-sw720dp-land/dimens.xml"
                 qualifiers="sw720dp-land" >

@@ -6,6 +6,9 @@
             <file
                 name="fonts/ayuma2yk.ttf"
                 path="/Users/alexeiyagolnikov/AndroidStudioProjects/ContactAppProject/ContactApp/src/main/assets/fonts/ayuma2yk.ttf" />
+            <file
+                name="fonts/cfmidnight.ttf"
+                path="/Users/alexeiyagolnikov/AndroidStudioProjects/ContactAppProject/ContactApp/src/main/assets/fonts/cfmidnight.ttf" />
         </source>
     </dataSet>
     <dataSet config="debug" >
