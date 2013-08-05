@@ -21,8 +21,8 @@ Over time, as it allows, I plan to add new features to this.
 <h2>Future Features:</h2>
 <ul>
 <li>Create a custom ArrayAdapter</li>
-<li>Dial button to call the contact</li>
-<li>Text button to text the contact</li>
+<li>Dial button to call the contact - Done!</li>
+<li>Text button to text the contact - Done!</li>
 <li>Email link (if available)</li>
 <li>Google+ link (if available)</li>
 <li>UI redesign (for better flow of information)</li>
