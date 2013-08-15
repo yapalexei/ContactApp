@@ -63,7 +63,7 @@
             android:layout_alignParentTop="true"
             android:text=""/>
 
-    <com.yapalexei.contactapp.MyTextView
+    <TextView
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:id="@+id/textView2"

@@ -37,7 +37,7 @@
             android:paddingRight="10sp"
             android:singleLine="true"
             android:layout_marginBottom="8dp"/>
-    <com.yapalexei.contactapp.MyTextView
+    <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/label"

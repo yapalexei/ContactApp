@@ -1,10 +1,12 @@
 package com.yapalexei.contactapp;
 
+import android.animation.LayoutTransition;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
@@ -22,6 +24,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
+import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,12 +49,21 @@ public class DetailActivity extends Activity {
     String phoneNumber, contactName;
     Cursor cur;
     ContentResolver cr;
+    private ViewGroup viewGroup;
 
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_details);
+        LayoutTransition l = new LayoutTransition();
+        l.enableTransitionType(LayoutTransition.CHANGING);
+        viewGroup = (ViewGroup) findViewById(R.id.detailContainerView);
+        viewGroup.setLayoutTransition(l);
+
+        setLayoutAnim_slidedownfromtop(viewGroup, this);
+
         Bitmap image = null;
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -58,7 +77,8 @@ public class DetailActivity extends Activity {
             // For the main activity, make sure the app icon in the action bar
             // does not behave as a button
             ActionBar actionBar = getActionBar();
-            actionBar.setHomeButtonEnabled(true);
+            if(actionBar != null)
+                actionBar.setHomeButtonEnabled(true);
         }
 
 
@@ -68,9 +88,9 @@ public class DetailActivity extends Activity {
         photoContainer = (ImageView) findViewById(R.id.imageView);
 
         // position them out of view
-        cNameView.setTranslationY(-200);
+//        cNameView.setTranslationY(-200);
         cNameView.setText(contactName);
-        pNumberView.setTranslationX(-300);
+//        pNumberView.setTranslationX(-300);
         pNumberView.setText(phoneNumber);
 
         // initialize the contact table, check it and load image
@@ -104,9 +124,9 @@ public class DetailActivity extends Activity {
         }
 
         // move into view
-        cNameView.animate().setDuration(750).translationY(0);
-        pNumberView.animate().setDuration(750).translationX(0);
-        photoContainer.animate().setDuration(1100).alpha(1);
+//        cNameView.animate().setDuration(750).translationY(0);
+//        pNumberView.animate().setDuration(750).translationX(0);
+//        photoContainer.animate().setDuration(1100).alpha(1);
 
 
     }
@@ -220,6 +240,25 @@ public class DetailActivity extends Activity {
         return resizedBitmap;
     }
 
+    public static void setLayoutAnim_slidedownfromtop(ViewGroup panel, Context ctx) {
 
+        AnimationSet set = new AnimationSet(true);
+
+        Animation animation = new AlphaAnimation(0.0f, 1.0f);
+        animation.setDuration(100);
+        set.addAnimation(animation);
+
+        animation = new TranslateAnimation(
+                Animation.RELATIVE_TO_SELF, 1.0f, Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f
+        );
+        animation.setDuration(500);
+        set.addAnimation(animation);
+
+        LayoutAnimationController controller =
+                new LayoutAnimationController(set, 0.25f);
+        panel.setLayoutAnimation(controller);
+
+    }
 
 }

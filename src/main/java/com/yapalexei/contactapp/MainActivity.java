@@ -2,7 +2,9 @@ package com.yapalexei.contactapp;
 
 import android.animation.LayoutTransition;
 import android.annotation.TargetApi;
+import android.app.ActivityOptions;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Typeface;
@@ -17,6 +19,13 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
+import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,7 +62,15 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         long startTime = System.currentTimeMillis();
         long timeToLoad;
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+
+        LayoutTransition l = new LayoutTransition();
+        l.enableTransitionType(LayoutTransition.CHANGING);
+        viewGroup = (ViewGroup) findViewById(R.id.containerView);
+        viewGroup.setLayoutTransition(l);
+
+        setLayoutAnim_slidedownfromtop(viewGroup, this);
 
         // setting up the sound object
         sound = new SoundPoolPlayer(this);
@@ -128,7 +145,7 @@ public class MainActivity extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Log.e("CLICKED ITEM: ", aa.getItem(position).toString());
                 // Open a new view that shows the details of the List Item
-                openView(aa.getItem(position).toString());
+                openView(aa.getItem(position).toString(), findViewById(R.id.containerView));
 
             }
         });
@@ -245,10 +262,39 @@ public class MainActivity extends Activity {
 //    }
 
     // For single message transferring
-    public void openView(String message){
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public void openView(String message, View view){
         Intent intent = new Intent(this, DetailActivity.class);
+        ActivityOptions options = ActivityOptions.makeScaleUpAnimation(view, 0,
+                0, 0, view.getHeight());
         intent.putExtra(EXTRA_MESSAGE, hashContactTable.get(message));
+
+//        view.animate().setDuration(500).translationX(-view.getWidth());
+//        view.setVisibility(View.GONE);
+//        view.setTranslationX(0);
         startActivity(intent);
+    }
+
+
+    public static void setLayoutAnim_slidedownfromtop(ViewGroup panel, Context ctx) {
+
+        AnimationSet set = new AnimationSet(true);
+
+        Animation animation = new AlphaAnimation(0.0f, 1.0f);
+        animation.setDuration(100);
+        set.addAnimation(animation);
+
+        animation = new TranslateAnimation(
+                Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, -1.0f, Animation.RELATIVE_TO_SELF, 0.0f
+        );
+        animation.setDuration(500);
+        set.addAnimation(animation);
+
+        LayoutAnimationController controller =
+                new LayoutAnimationController(set, 0.25f);
+        panel.setLayoutAnimation(controller);
+
     }
 
     @Override

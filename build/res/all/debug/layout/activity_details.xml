@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DetailActivity"
-    android:background="@drawable/paper_backg">
+    android:background="@drawable/paper_backg"
+    android:id="@+id/detailContainerView">
 
 
     <FrameLayout
